@@ -31,6 +31,9 @@ extension Command {
         @Flag(inversion: .prefixedNo, help: "Whether to include debug symbols in the built XCFramework")
         var debugSymbols = true
 
+        @Flag(inversion: .prefixedNo, help: "Whether to build a static library instead of a dynamic framework")
+        var staticLibrary = false
+
         @Flag(help: "Prints the available products and targets")
         var listProducts = false
 

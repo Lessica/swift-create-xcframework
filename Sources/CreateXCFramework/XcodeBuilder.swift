@@ -115,6 +115,10 @@ struct XcodeBuilder {
             "SKIP_INSTALL=NO"
         ]
 
+        if self.options.staticLibrary {
+            command.append("MACH_O_TYPE=staticlib")
+        }
+
         // add SDK-specific build settings
         if let settings = sdk.buildSettings {
             for setting in settings {
