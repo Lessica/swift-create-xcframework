@@ -10,10 +10,13 @@ import PackageModel
 
 enum TargetPlatform: String, ExpressibleByArgument, CaseIterable {
     case ios
+    case iossimulator
     case macos
     case maccatalyst
     case tvos
+    case tvossimulator
     case watchos
+    case watchossimulator
 
     init?(argument: String) {
         self.init(rawValue: argument.lowercased())
@@ -22,11 +25,14 @@ enum TargetPlatform: String, ExpressibleByArgument, CaseIterable {
 
     var platformName: String {
         switch self {
-        case .ios:          return "ios"
-        case .macos:        return "macos"
-        case .maccatalyst:  return "macos"
-        case .tvos:         return "tvos"
-        case .watchos:      return "watchos"
+        case .ios:               return "ios"
+        case .iossimulator:      return "iossimulator"
+        case .macos:             return "macos"
+        case .maccatalyst:       return "macos"
+        case .tvos:              return "tvos"
+        case .tvossimulator:     return "tvossimulator"
+        case .watchos:           return "watchos"
+        case .watchossimulator:  return "watchossimulator"
         }
     }
 
@@ -48,7 +54,11 @@ enum TargetPlatform: String, ExpressibleByArgument, CaseIterable {
                     archiveName: "iphoneos.xcarchive",
                     releaseFolder: "Release-iphoneos",
                     buildSettings: nil
-                ),
+                )
+            ]
+
+        case .iossimulator:
+            return [
                 SDK (
                     destination: "generic/platform=iOS Simulator",
                     archiveName: "iphonesimulator.xcarchive",
@@ -84,7 +94,11 @@ enum TargetPlatform: String, ExpressibleByArgument, CaseIterable {
                     archiveName: "appletvos.xcarchive",
                     releaseFolder: "Release-appletvos",
                     buildSettings: nil
-                ),
+                )
+            ]
+
+        case .tvossimulator:
+            return [
                 SDK (
                     destination: "generic/platform=tvOS Simulator",
                     archiveName: "appletvsimulator.xcarchive",
@@ -100,7 +114,11 @@ enum TargetPlatform: String, ExpressibleByArgument, CaseIterable {
                     archiveName: "watchos.xcarchive",
                     releaseFolder: "Release-watchos",
                     buildSettings: nil
-                ),
+                )
+            ]
+
+        case .watchossimulator:
+            return [
                 SDK (
                     destination: "generic/platform=watchOS Simulator",
                     archiveName: "watchsimulator.xcarchive",
