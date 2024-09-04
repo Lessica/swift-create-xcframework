@@ -245,6 +245,15 @@ struct PackageInfo {
         // filter our package platforms to make sure everything is supported
         let target = packagePlatforms
             .compactMap { platform -> [TargetPlatform]? in
+                if platform.platformName == "ios" {
+                    return supported.filter { $0 == .ios || $0 == .iossimulator }
+                }
+                if platform.platformName == "tvos" {
+                    return supported.filter { $0 == .tvos || $0 == .tvossimulator }
+                }
+                if platform.platformName == "watchos" {
+                    return supported.filter { $0 == .watchos || $0 == .watchossimulator }
+                }
                 return supported.filter({ $0.platformName == platform.platformName })
             }
             .flatMap { $0 }

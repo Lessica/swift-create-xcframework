@@ -34,6 +34,9 @@ extension Command {
         @Flag(inversion: .prefixedNo, help: "Whether to build a static library instead of a dynamic framework")
         var staticLibrary = false
 
+        @Flag(help: "Prints the supported platforms")
+        var listPlatforms = false
+
         @Flag(help: "Prints the available products and targets")
         var listProducts = false
 

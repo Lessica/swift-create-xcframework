@@ -60,6 +60,16 @@ struct Command: ParsableCommand {
         let generator = ProjectGenerator(package: package)
 
         let platforms = try package.supportedPlatforms()
+        if self.options.listPlatforms {
+            print (
+                """
+                \nSupported platforms:
+                    \(platforms.map(\.rawValue).sorted().joined(separator: "\n    "))
+                \n
+                """
+            )
+            Darwin.exit(0)
+        }
 
         // get what we're building
         try generator.writeDistributionXcconfig()
